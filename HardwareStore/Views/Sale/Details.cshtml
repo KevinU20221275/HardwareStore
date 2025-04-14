@@ -1,0 +1,108 @@
+﻿@model HardwareStore.Models.Sale
+@{
+    ViewData["Title"] = "Ventas";
+    ViewData["TitlePage"] = "Factura de Venta";
+}
+<style>
+    #sectionSaleDetail {
+        max-width: 800px;
+    }
+
+    .btn {
+        display: flex;
+        justify-content: end;
+    }
+
+    #sectionSaleDetail img {
+        height: 120px;
+    }
+</style>
+
+<div>
+    <hr />
+    <section id="sectionSaleDetail" class="container bg-light rounded-2 p-3">
+        <h3 class="text-center">Ferreteria "El Maestro"</h3>
+        <div class="w-100">
+            <img class="d-block mx-auto" src="/images/logo/HardwareStoreLogo.png" />
+        </div>
+        <dl class="row max-w">
+            <dt class="col-sm-4">
+                Numero de Factura :
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+            <dt class="col-sm-4">
+                Nombre del Empleado :
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.EmployeeName)
+            </dd>
+            <dt class="col-sm-4">
+                Fecha :
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.SaleDate)
+            </dd>
+            <dt class="col-sm-4">
+                Total de la Venta :
+            </dt>
+            <dd class="col-sm-8">
+                $ @Html.DisplayFor(model => model.Total)
+            </dd>
+            <dt class="col-sm-4">
+                Nombre del Cliente :
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.CustomerName)
+            </dd>
+            <dt class="col-sm-4">
+                Direccion del Cliente :
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.CustomerAddress)
+            </dd>
+            <dt class="col-sm-4">
+                Email del Cliente :
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.CustomerEmail)
+            </dd>
+        </dl>
+        <h4 class="text-center my-2">Detalle de Venta</h4>
+        <table class="w-100 table table-responsive table-bordered table-striped mt-2">
+            <thead class="text-center text-white bg-secondary">
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @if (Model.SaleDetails != null)
+                {
+                    @foreach (var detail in Model.SaleDetails)
+                    {
+                        <tr>
+                            <td>@detail.ProductName</td>
+                            <td>$ @detail.UnitPrice</td>
+                            <td>@detail.Quantity</td>
+                            <td>$ @detail.DetailTotal</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td>No se encontraron resultados</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="btn">
+            <a asp-action="Index" class="btn btn-primary mt-2">Volver a Ventas</a>
+        </div>
+    </section>
+
+</div>
