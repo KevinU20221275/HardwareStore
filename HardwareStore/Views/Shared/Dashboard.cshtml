@@ -1,0 +1,108 @@
+﻿﻿﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
+        <title>@ViewData["Title"] | Ferreteria "El Maestro"</title>
+        <!-- ========== All CSS files linkup ========= -->
+        <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/lineicons.css" />
+        <link rel="stylesheet" href="~/css/materialdesignicons.min.css" />
+        <link rel="stylesheet" href="~/css/main.css" />
+        <!-- SELECT 2 -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <!-- DATATABLE -->
+        <link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.0.7/b-3.0.2/b-colvis-3.0.2/b-html5-3.0.2/b-print-3.0.2/r-3.0.2/datatables.min.css" rel="stylesheet">
+        <!-- TOASTIFY -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    </head>
+    <style>
+        main{
+            margin-top:-50px !important;
+        }
+    </style>
+<body>
+    <!-- ======== Preloader =========== -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+    <!-- ======== Preloader =========== -->
+    <!-- ======== sidebar-nav start =========== -->
+    <partial name="/Views/Shared/Partials/_SideBar.cshtml" />
+    <div class="overlay"></div>
+    <!-- ======== sidebar-nav end =========== -->
+    <!-- ======== main-wrapper start =========== -->
+    <main class="main-wrapper">
+        <!-- ========== header start ========== -->
+        <partial name="/Views/Shared/Partials/_Header.cshtml" />
+        <!-- ========== header end ========== -->
+        <!-- ========== section start ========== -->
+        <section class="section">
+            <div class="container-fluid">
+                <!-- ========== title-wrapper start ========== -->
+                <div class="title-wrapper pt-30">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="title">
+                                <h2>@ViewData["TitlePage"]</h2>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-md-6">
+                            <div class="breadcrumb-wrapper">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a asp-action="Index" asp-controller="Home">Dashboard</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            @ViewData["TitlePage"]
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                        @RenderBody()
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- ========== title-wrapper end ========== -->
+            </div>
+            <!-- end container -->
+        </section>
+
+        <!-- ========== section end ========== -->
+        <!-- ========== footer start =========== -->
+        <partial name="/Views/Shared/Partials/_Footer.cshtml" />
+        <!-- ========== footer end =========== -->
+    </main>
+    <!-- ======== main-wrapper end =========== -->
+    <!-- ========= All Javascript files linkup ======== -->
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/main.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- CHART JS -->
+    <script src="~/js/Chart.min.js"></script>
+
+    <!-- SELECT 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- DATA TABLE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.0.7/b-3.0.2/b-colvis-3.0.2/b-html5-3.0.2/b-print-3.0.2/r-3.0.2/datatables.min.js"></script>
+
+    <!-- TOASTIFY JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
