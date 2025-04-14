@@ -1,0 +1,100 @@
+﻿
+<!-- Modal -->
+<div class="modal fade" id="modalCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Sale" asp-action="CreateCustomer" id="form-add-customer" method="post">
+                    @Html.AntiForgeryToken()
+                    <div  class="text-danger"></div>
+                    <div class="form-group">
+                        <label  class="control-label">Nombres</label><b class="text-danger">*</b>
+                        <input name="FirstName" class="form-control" required />
+                        <span  class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">Apellidos</label><b class="text-danger"> *</b>
+                        <input name="LastName" class="form-control" required />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">Email</label>
+                        <input name="Email" class="form-control" />
+                        <span  class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Telefono</label><b class="text-danger"> *</b>
+                        <input name="Phone" class="form-control" />
+                        <span  class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">Direccion</label><b class="text-danger"> *</b>
+                        <input name="Address" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">Ciudad</label><b class="text-danger"> *</b>
+                        <input name="City" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Guardar <i class="lni lni-save"></i></button>
+                        <a class="btn btn-primary" asp-action="Index">Volver a la lista <i class="lni lni-arrow-left"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('form-add-customer').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    console.log(formData)
+
+    const token = formData.get('__RequestVerificationToken');
+
+    try {
+        const response = await fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'RequestVerificationToken': token
+            },
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+            alert(result.message);
+
+            // Opcional: agregar nuevo cliente al dropdown
+            const select = document.getElementById('customersSearch');
+            const option = new Option(result.customer.customerName, result.customer.id, true, true);
+            select.add(option);
+
+            // Cerrar modal (si estás usando Bootstrap)
+            const modal = bootstrap.Modal.getInstance(document.getElementById('modalCustomer'));
+            modal.hide();
+
+            // Resetear formulario
+            form.reset();
+        } else {
+            alert("Error al agregar cliente.");
+            console.log(result);
+        }
+
+    } catch (err) {
+        console.error('Error:', err);
+        alert('Error en el servidor');
+    }
+});
+</script>
