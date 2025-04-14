@@ -31,6 +31,7 @@ It uses **Dapper** for data access, **AJAX** and **jQuery** for frontend interac
 ### Sales Charts:
 - Most Sold Products chart.
 - Monthly Sales chart.
+<img src="images/graphics.PNG" alt="dynamic charts" width="600"/>
 
 ### Form Validation:
 - Validates that products in the sale have sufficient stock.
@@ -67,8 +68,8 @@ dotnet restore
 - Execute the SQL script included in the project (`HardwareStore.sql`).  
   This script will create the database, tables, stored procedures, triggers, and insert some initial data.
 - execute this query to generate a user and you can login in sistem
-![Admin User](images/credentials.png)
-![Login](images/login.png)
+![Admin User](images/credentials.PNG)
+![Login](images/login.PNG)
 - Make sure your connection string is correctly configured in `appsettings.json` to match your SQL Server instance.
 
 ### Run the Application:
@@ -87,7 +88,6 @@ dotnet run
 - **Bootstrap** for layout and UI.
 - **jQuery**, **Select2**, and **DataTables** for enhanced interactions.
 - **Chart.js** for rendering dynamic charts.
-<img src="images/graphics.png" alt="dynamic charts" width="600"/>
 
 ### Backend:
 - **Dapper** for executing SQL queries and managing data logic.
@@ -146,7 +146,7 @@ If you'd like to contribute to this project, please follow these steps:
 
 The application interface is in **Spanish**, as it was developed for a university project. This includes form labels, buttons, menus, and tables.
 
-<img src="images/saleModule.png" alt="UI in Spanish" width="600"/>
+<img src="images/saleModule.PNG" alt="UI in Spanish" width="600"/>
 
 > 📌 You can change the language by editing the Razor views in the `/Views` folder.
 
@@ -170,11 +170,11 @@ The project includes role-based access control implemented in the controllers. T
 - **Vendedor | Sales**: Access to create and view sales.
 - **Marketing | Marketing**: Access to reports and analytics.
 
-<img src="images/sidebarView.png" alt="Sidebar by Role" width="600"/>
+<img src="images/sidebarView.PNG" alt="Sidebar by Role" width="500"/>
 
 > 🛠️ To use the system properly, you must adapt role names to your preferred language and check access logic in the sidebar, controllers, and authorization filters.
-<img src="images/403.png" alt="unauthorized" width="600"/>
-<img src="images/Roles.png" alt="roles in controllers" width="600"/>
+<img src="images/Roles.PNG" alt="roles in controllers" width="500"/>
+<img src="images/403.PNG" alt="unauthorized" width="600"/>
 ---
 
 
